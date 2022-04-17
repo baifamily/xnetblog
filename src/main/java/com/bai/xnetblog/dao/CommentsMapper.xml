@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bai.xnetblog.dao.CommentsMapper">
+    <select id="getCommentsByAid" resultType="com.bai.xnetblog.pojo.Comments">
+        SELECT * FROM comments WHERE aid=#{aid}
+    </select>
+
+    <select id="getCommentsTotalByAid" resultType="int">
+        SELECT count(*) FROM comments where aid=#{aid}
+    </select>
+
+    <insert id="addComments" parameterType="com.bai.xnetblog.pojo.Comments" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO comments SET aid=#{aid},content=#{content},publishDate=#{publishDate},uid=#{uid},parentId=#{parentId}
+    </insert>
+</mapper>
